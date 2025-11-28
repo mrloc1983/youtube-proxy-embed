@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Động Vật Hoang Dã Hay Nhất!</title>
+    <!-- Open Graph Tags cho Facebook Inline Play -->
+    <meta property="og:title" content="Video Động Vật Hoang Dã Siêu Dễ Thương!">
+    <meta property="og:description" content="Xem video hài hước về động vật hoang dã ngay trên Facebook. Nhấn Play để cười mỉm!">
+    <meta property="og:type" content="video.other">
+    <meta property="og:video" content="https://www.youtube.com/v/{{VIDEO_ID}}?version=3&autohide=1">
+    <meta property="og:video:type" content="application/x-shockwave-flash">
+    <meta property="og:video:width" content="640">
+    <meta property="og:video:height" content="360">
+    <meta property="og:video:secure_url" content="https://www.youtube.com/v/{{VIDEO_ID}}?version=3&autohide=1">
+    <meta property="og:image" content="https://img.youtube.com/vi/{{VIDEO_ID}}/maxresdefault.jpg">
+    <meta property="og:url" content="https://mrloc1983.github.io/youtube-proxy-embed/?video_id={{VIDEO_ID}}">
+    <!-- Thay yourusername bằng username GitHub của bạn -->
+</head>
+<body>
+    <h1>Video Động Vật Hoang Dã Hay Nhất!</h1>
+    <p>Xem và cười mỉm với khoảnh khắc dễ thương của động vật hoang dã.</p>
+    <!-- Iframe Embed YouTube -->
+    <iframe width="640" height="360" src="https://www.youtube.com/embed/{{VIDEO_ID}}?rel=0&autoplay=0" frameborder="0" allowfullscreen></iframe>
+    <script>
+        // JS động: Lấy video_id từ URL query và thay thế {{VIDEO_ID}}
+        const urlParams = new URLSearchParams(window.location.search);
+        const videoId = urlParams.get('video_id') || 'default_id'; // Fallback nếu không có param
+        document.querySelectorAll('meta[property="og:video"], meta[property="og:video:secure_url"], meta[property="og:image"], meta[property="og:url"]').forEach(meta => {
+            let content = meta.getAttribute('content');
+            meta.setAttribute('content', content.replace(/{{VIDEO_ID}}/g, videoId));
+        });
+        document.querySelector('iframe').src = document.querySelector('iframe').src.replace('{{VIDEO_ID}}', videoId);
+        document.title = 'Video Động Vật: ' + videoId;
+    </script>
+</body>
+</html>
